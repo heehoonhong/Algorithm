@@ -19,15 +19,17 @@ public class Main {
 			sang.add(sc.nextInt());
 		}
 		int m=sc.nextInt();
-		Queue<Integer> you=new LinkedList<>();
+		List<Integer> you=new ArrayList<>();
 		for(int i=0;i<m;i++) {
 			you.add(sc.nextInt());
 		}
 		
+		StringBuilder sb=new StringBuilder();
 		for(int element:you) {
-			if(sang.contains(element)) System.out.print(1+" ");
-			else System.out.print(0+" ");
+			if(sang.contains(element)) sb.append("1 ");
+			else sb.append("0 ");
 		}
+		System.out.println(sb.toString().trim());
 	}
 
 }
