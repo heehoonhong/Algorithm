@@ -43,13 +43,12 @@ public class Main {
         Main T = new Main();
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt(); // 기존의 전역 변수 n을 사용
-        sc.nextLine(); // 버퍼 비우기 (개행 문자 제거)
 
         visited = new int[n + 1][n + 1];
         apartment = new int[n + 1][n + 1];
 
         for (int i = 1; i <= n; i++) {
-            String line = sc.nextLine(); // 개행 문자 문제 해결
+            String line = sc.next();
             for (int j = 1; j <= n; j++) {
                 apartment[i][j] = line.charAt(j - 1) - '0';
             }
@@ -74,7 +73,5 @@ public class Main {
         for (int house : houses) {
             System.out.println(house);
         }
-
-        sc.close(); // Scanner 닫기 (메모리 누수 방지)
     }
 }
