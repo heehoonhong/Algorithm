@@ -4,13 +4,12 @@ def solution(k, score):
     answer = []
     
     for i in range(len(score)):
+        owner_list.append(score[i])
+        owner_list.sort()
         if i<k:
-            owner_list.append(score[i])
-            owner_list.sort()
             answer.append(owner_list[0])
         else:
-            owner_list.append(score[i])
-            owner_list.sort()
+            
             del(owner_list[0])
             answer.append(owner_list[0])
             
