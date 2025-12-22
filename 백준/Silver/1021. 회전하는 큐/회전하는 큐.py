@@ -11,16 +11,13 @@ cnt=0
 
 for element in nums:
 
-    while dq.index(element)!=0:
-
-        if dq.index(element)<len(dq)-dq.index(element):
-            number = dq.popleft()
-            dq.append(number)
-            cnt += 1
-        elif dq.index(element)>=len(dq)-dq.index(element):
-            number = dq.pop()
-            dq.appendleft(number)
-            cnt += 1
+    while dq[0] != element:
+        if dq.index(element) <= len(dq)//2:
+            dq.rotate(-1)
+            cnt+=1
+        else:
+            dq.rotate(1)
+            cnt+=1
 
     dq.popleft()
 
