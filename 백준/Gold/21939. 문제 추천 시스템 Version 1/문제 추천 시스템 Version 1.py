@@ -23,20 +23,19 @@ for _ in range(m):
         problems[problem]=difficulty
         heapq.heappush(max_hq,(-difficulty,-problem))
         heapq.heappush(min_hq,(difficulty,problem))
-    elif command_list[0]=="recommend":
+    elif command_list[0] == "recommend":
 
-        if command_list[1]=="1":
-
+        if command_list[1] == "1":
+            # [수정] 1. dict에 없거나 OR 2. dict에 있는데 난이도가 다르면 -> 삭제
+            while -max_hq[0][1] not in problems or problems[-max_hq[0][1]] != -max_hq[0][0]:
+                heapq.heappop(max_hq)
             print(-max_hq[0][1])
 
-        elif command_list[1]=="-1":
+        elif command_list[1] == "-1":
+            # [수정] 1. dict에 없거나 OR 2. dict에 있는데 난이도가 다르면 -> 삭제
+            while min_hq[0][1] not in problems or problems[min_hq[0][1]] != min_hq[0][0]:
+                heapq.heappop(min_hq)
             print(min_hq[0][1])
 
     elif command_list[0]=="solved":
-        problem=int(command_list[1])
-        if problem==-max_hq[0][1]:
-            heapq.heappop(max_hq)
-
-        if problem==min_hq[0][1]:
-            heapq.heappop(min_hq)
-        problems.pop(problem)
+        problems.pop(int(command_list[1]))
