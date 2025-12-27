@@ -1,12 +1,15 @@
 import sys
-from collections import Counter
+
+tree=dict()
 
 lines=sys.stdin.readlines()
+cnt=0
+for line in lines:
+    line=line.strip()
+    tree[line]=tree.get(line,0)+1
+    cnt+=1
 
-species=Counter(line.strip() for line in lines)
-cnt=sum(species.values())
-
-sorted_keys=sorted(species.keys())
+sorted_keys=sorted(tree.keys())
 
 for key in sorted_keys:
-    print(key, f"{species[key]/cnt*100:.4f}")
+    print(key,f"{tree[key]/cnt*100:.4f}")
