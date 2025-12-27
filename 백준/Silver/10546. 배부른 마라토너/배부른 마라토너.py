@@ -1,15 +1,15 @@
 import sys
 from collections import Counter
 
+runners=[]
+complete=[]
 n=int(sys.stdin.readline())
-data1=[]
-data2=[]
 for _ in range(n):
-    data1.append(sys.stdin.readline().strip())
-
-
+    runner=sys.stdin.readline().strip()
+    runners.append(runner)
 for _ in range(n-1):
-    data2.append(sys.stdin.readline().strip())
+    completions=sys.stdin.readline().strip()
+    complete.append(completions)
 
-answer=Counter(data1)-Counter(data2)
+answer=Counter(runners)-Counter(complete)
 print(list(answer.keys())[0])
