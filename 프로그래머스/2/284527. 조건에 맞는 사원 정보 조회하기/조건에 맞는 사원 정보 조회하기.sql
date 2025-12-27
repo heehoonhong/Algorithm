@@ -1,8 +1,11 @@
-select hg.score, he.emp_no, he.emp_name, he.position, he.email from hr_employees as he
+select T.TOTAL_SCORE AS SCORE ,E.EMP_NO,E.EMP_NAME,E.POSITION,E.EMAIL
+from HR_EMPLOYEES AS E
 join (
-select emp_no, sum(score) as score from hr_grade 
-    where year=2022 group by emp_no
-) hg
-on he.emp_no=hg.emp_no
-order by hg.score desc
+    select EMP_NO, SUM(SCORE) AS TOTAL_SCORE
+    from HR_GRADE
+    where YEAR=2022
+    group by EMP_NO
+) T
+on E.EMP_NO=T.EMP_NO
+order by SCORE desc
 limit 1
