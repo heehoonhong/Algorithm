@@ -1,6 +1,5 @@
-select NAME, count(*) as COUNT 
-from animal_ins
+select NAME,count(*) as COUNT from animal_ins
 where NAME is not null
 group by name
 having count(*)>=2
-order by name
+order by name asc
