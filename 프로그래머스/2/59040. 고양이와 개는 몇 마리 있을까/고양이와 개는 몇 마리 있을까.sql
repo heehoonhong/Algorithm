@@ -1,3 +1,4 @@
-select ANIMAL_TYPE, count(*) as count from animal_ins
-group by animal_type
-order by animal_type asc
+select ANIMAL_TYPE,COUNT(*) AS COUNT
+from animal_ins
+group by ANIMAL_TYPE
+order by ANIMAL_TYPE
