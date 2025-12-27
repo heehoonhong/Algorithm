@@ -1,16 +1,14 @@
-import heapq
 import sys
+import heapq
 
 n=int(sys.stdin.readline())
-hq=[]
-
+max_hq=[]
 for _ in range(n):
     num=int(sys.stdin.readline())
-
     if num>0:
-        heapq.heappush(hq,-num)
-    else:
-        if not hq:
+        heapq.heappush(max_hq,-num)
+    elif num==0:
+        if not max_hq:
             print(0)
         else:
-            print(-heapq.heappop(hq))
+            print(-heapq.heappop(max_hq))
