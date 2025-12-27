@@ -1,6 +1,6 @@
-select p.product_code as PRODUCT_CODE,SUM(p.price*os.sales_amount) as SALES
-from product as p
-join offline_sale as os
-on p.product_id=os.product_id
-group by p.product_code
-order by sales desc,product_code asc
+select P.PRODUCT_CODE,P.PRICE*SUM(SALES_AMOUNT) AS SALES
+from PRODUCT P
+join OFFLINE_SALE O
+on P.PRODUCT_ID=O.PRODUCT_ID
+GROUP BY P.PRODUCT_ID
+ORDER BY SALES DESC, P.PRODUCT_CODE ASC
