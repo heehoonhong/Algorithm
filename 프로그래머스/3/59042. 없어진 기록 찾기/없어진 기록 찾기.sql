@@ -1,7 +1,5 @@
-SELECT ao.animal_id, ao.name
-FROM animal_outs AS ao
+SELECT AO.ANIMAL_ID, AO.NAME FROM ANIMAL_OUTS AO 
 WHERE NOT EXISTS (
-    SELECT 1
-    FROM animal_ins AS ai
-    WHERE ao.animal_id = ai.animal_id
+    SELECT AI.ANIMAL_ID, AI.NAME FROM ANIMAL_INS AI
+    WHERE AO.ANIMAL_ID=AI.ANIMAL_ID
 )
