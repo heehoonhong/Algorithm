@@ -1,10 +1,7 @@
-select ai.name as NAME, ai.datetime as DATETIME
-from animal_ins as ai
-where not exists
-(
-select * 
-from animal_outs as ao
-where ai.animal_id=ao.animal_id
+SELECT AI.NAME, AI.DATETIME FROM ANIMAL_INS AI
+WHERE NOT EXISTS (
+    SELECT * FROM ANIMAL_OUTS AO
+    WHERE AI.ANIMAL_ID=AO.ANIMAL_ID
 )
-order by ai.datetime asc
-limit 3
+ORDER BY AI.DATETIME ASC
+LIMIT 3
