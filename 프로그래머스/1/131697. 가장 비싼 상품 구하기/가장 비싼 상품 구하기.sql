@@ -1,1 +1,1 @@
-select MAX(price) AS MAX_PRICE from product
+SELECT MAX(PRICE) AS MAX_PRICE FROM PRODUCT
