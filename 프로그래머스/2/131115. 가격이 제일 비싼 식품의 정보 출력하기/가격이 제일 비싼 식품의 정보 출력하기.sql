@@ -1,3 +1,3 @@
-select product_id,product_name,product_cd,category,price
-from food_product
-where price=(select MAX(price) from food_product)
+SELECT * FROM FOOD_PRODUCT
+ORDER BY PRICE DESC
+limit 1
