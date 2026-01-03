@@ -1,20 +1,17 @@
 import sys
-from collections import deque
 
 a,b=map(int,sys.stdin.readline().split())
 
-queue=deque()
-queue.append((a,1))
-
-while queue:
-    num,cnt=queue.popleft()
-    if num==b:
-        print(cnt)
+cnt=0
+while b>a:
+    if b%2==0:
+        b=b//2
+    elif b%10==1:
+        b=b//10
+    else: 
         break
-    elif num>b:
-        continue
-    else:
-        queue.append((num*2,cnt+1))
-        queue.append((int(str(num)+"1"),cnt+1))
+    cnt+=1
+if b==a:
+    print(cnt+1)
 else:
     print(-1)
