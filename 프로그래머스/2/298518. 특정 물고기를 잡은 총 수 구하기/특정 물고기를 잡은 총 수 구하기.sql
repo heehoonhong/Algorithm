@@ -1,0 +1,4 @@
+select count(*) as fish_count from fish_info
+where 
+fish_type=(select fish_type from fish_name_info where fish_name='BASS') or 
+fish_type=(select fish_type from fish_name_info where fish_name='SNAPPER')
