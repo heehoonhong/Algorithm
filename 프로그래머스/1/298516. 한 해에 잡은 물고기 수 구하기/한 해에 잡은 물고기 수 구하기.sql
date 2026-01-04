@@ -1,4 +1,2 @@
-SELECT
-  COUNT(*) AS FISH_COUNT
-FROM FISH_INFO
-WHERE TIME BETWEEN '2021-01-01' AND '2021-12-31';
+select count(id) as fish_count from fish_info
+where year(time)='2021'
