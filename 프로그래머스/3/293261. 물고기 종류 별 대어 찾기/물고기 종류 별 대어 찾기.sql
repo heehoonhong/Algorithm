@@ -1,12 +1,10 @@
-WITH MAX_FISH AS (
-    SELECT ID,FISH_TYPE,LENGTH
-    FROM FISH_INFO
-    WHERE (FISH_TYPE,LENGTH) IN (
-        SELECT FISH_TYPE,MAX(LENGTH) FROM FISH_INFO 
-        GROUP BY FISH_TYPE
-    )
+with fish as (
+    select max(length) as length,fish_type from fish_info
+    group by fish_type
 )
-
-SELECT ID,FISH_NAME,LENGTH FROM MAX_FISH MF
-JOIN FISH_NAME_INFO FNI
-ON MF.FISH_TYPE=FNI.FISH_TYPE
+select fi.id,fni.fish_name,fi.length from fish_info fi
+join fish_name_info  fni
+on fi.fish_type=fni.fish_type
+where (fi.length, fi.fish_type) in (
+    select length, fish_type from fish
+)
