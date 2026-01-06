@@ -1,5 +1,5 @@
-select edc.id,edc.genotype,edp.genotype as parent_genotype from ecoli_data edc 
-join ecoli_data edp
-on edc.parent_id=edp.id
-where (edc.genotype&edp.genotype)=edp.genotype
-order by edc.id asc
+select c.id,c.genotype, p.genotype as parent_genotype from ecoli_data c
+join ecoli_data p
+on c.parent_id=p.id
+where (c.genotype&p.genotype)=p.genotype
+order by c.id
