@@ -8,9 +8,8 @@ for _ in range(m):
     s,e,w=map(int,sys.stdin.readline().split())
     graph[s].append((e,w))
 start,end=map(int,sys.stdin.readline().split())
-q=[]
 def dijkstra(graph,start):
-    distances={i:float('inf') for i in range(n+1)}
+    distances={i:float('inf') for i in range(1,n+1)}
     distances[start]=0
     min_hq=[(0,start)]
     prev_node=[0]*(n+1)
@@ -21,22 +20,22 @@ def dijkstra(graph,start):
         for neighbor,weight in graph[current_node]:
             distance=current_distance+weight
             if distance<distances[neighbor]:
-                prev_node[neighbor]=current_node
                 distances[neighbor]=distance
+                prev_node[neighbor]=current_node
                 heapq.heappush(min_hq,(distance,neighbor))
     return distances,prev_node
 
-result,prev_map=dijkstra(graph,start)
-
+dis,prev=dijkstra(graph,start)
 path=[]
-
-curr=end
-path.append(end)
-while curr!=start:
-    curr=prev_map[curr]
-    path.append(curr)
-print(result[end])
+cur=end
+path.append(cur)
+while cur!=start:
+    cur=prev[cur]
+    path.append(cur)
+path=path[::-1]
+print(dis[end])
 print(len(path))
-path.reverse()
-
 print(*path)
+#print(prev)
+
+
