@@ -1,7 +1,9 @@
 import sys
 
-a=['0']+list(sys.stdin.readline().strip())
+a=['0'] +list(sys.stdin.readline().strip())
 b=['0']+list(sys.stdin.readline().strip())
+
+answer=0
 m=len(a)
 n=len(b)
 dp=[[0]*n for _ in range(m)]
