@@ -7,6 +7,18 @@ a=list(map(int,input().split()))
 a=set(a)
 a=list(a)
 a.sort()
+nn=len(a)
 
-for element in combinations_with_replacement(a,m):
-    print(*element)
+def dfs(depth,tlst):
+    if depth==m:
+        result=" ".join(map(str,tlst))
+        print(result)
+        return
+    for i in range(nn):
+        if tlst==[]:
+            dfs(depth+1,tlst+[a[i]])
+        else:
+            if tlst[-1]<=a[i]:
+                dfs(depth+1,tlst+[a[i]])
+
+dfs(0,[])
