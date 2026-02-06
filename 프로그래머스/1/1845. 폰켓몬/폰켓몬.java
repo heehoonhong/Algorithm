@@ -2,11 +2,11 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] nums) {
-        Map<Integer,Integer> animals=new HashMap<Integer,Integer>();
+        Set<Integer> animals=new HashSet<>();
         for(int num:nums){
-            animals.put(num,animals.getOrDefault(num,0)+1);
+            animals.add(num);
         }
-        
         return Math.min(animals.size(),nums.length/2);
+        
     }
 }
