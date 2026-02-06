@@ -2,16 +2,19 @@ import java.util.*;
 
 class Solution {
     public boolean solution(String[] phone_book) {
-        boolean answer = true;
-        Arrays.sort(phone_book);
-        
-        for(int i = 0;i<phone_book.length-1;i++){
-            if(phone_book[i+1].startsWith(phone_book[i])){
-                return false;
+        List<String> phones=Arrays.asList(phone_book);
+        Collections.sort(phones);
+        boolean flag=true;
+        for(int i=0;i<phones.size()-1;i++){
+            if(phones.get(i+1).indexOf(phones.get(i))==0){
+                flag=false;
             }
         }
-        
-        
-        return true;
+        if(flag==false){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }
