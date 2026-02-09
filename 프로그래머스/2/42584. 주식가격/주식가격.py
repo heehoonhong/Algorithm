@@ -2,7 +2,6 @@ def solution(prices):
     result=[0]*len(prices)
     stack=[]
     stack.append((prices[0],0))
-    cnt=1
     for i in range(1,len(prices)):
         if stack[-1][0]<=prices[i]:
             stack.append((prices[i],i))
