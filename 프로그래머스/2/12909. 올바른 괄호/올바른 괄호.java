@@ -2,28 +2,27 @@ import java.util.*;
 
 class Solution {
     boolean solution(String s) {
-        Stack<Character> stack=new Stack<>();
-        char[] c=s.toCharArray();
-        
-        for(int i=0;i<c.length;i++){
-            if(c[i]=='('){
-                stack.push(c[i]);
+        char[] ss=s.toCharArray();
+        Queue<Character> queue=new LinkedList<>();
+        for(int i = 0;i<ss.length;i++){
+            if(ss[i]=='('){
+                queue.offer(ss[i]);
             }
             else{
-                if(!stack.isEmpty()){
-                    stack.pop();
+                if(!queue.isEmpty()){
+                    queue.poll();
                 }
                 else{
                     return false;
                 }
             }
         }
-        
-        if(stack.isEmpty()){
-            return true;
-        }
-        else{
+        if(!queue.isEmpty()){
             return false;
         }
+        else{
+            return true;
+        }
     }
+    
 }
