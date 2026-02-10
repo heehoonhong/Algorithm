@@ -14,26 +14,18 @@ def solution(operations):
             deleted[i]=1
         elif command=="D":
             
+            while min_hq and deleted[min_hq[0][1]]!=1:
+                heapq.heappop(min_hq)
+            while max_hq and deleted[max_hq[0][1]]!=1:
+                heapq.heappop(max_hq)
             
             # 최댓값 삭제
             if num==1:
-                while min_hq and deleted[min_hq[0][1]]!=1:
-                    heapq.heappop(min_hq)
-                while max_hq and deleted[max_hq[0][1]]!=1:
-                    heapq.heappop(max_hq)
-                
-                
                 if max_hq:
                     deleted[max_hq[0][1]]=0
                     heapq.heappop(max_hq)
-                
-                
             # 최솟값 삭제
             else:
-                while min_hq and deleted[min_hq[0][1]]!=1:
-                    heapq.heappop(min_hq)
-                while max_hq and deleted[max_hq[0][1]]!=1:
-                    heapq.heappop(max_hq)
                 if min_hq:
                     deleted[min_hq[0][1]]=0
                     heapq.heappop(min_hq)
@@ -44,12 +36,12 @@ def solution(operations):
     while max_hq and deleted[max_hq[0][1]]!=1:
         heapq.heappop(max_hq)
     
-    if max_hq and deleted[max_hq[0][1]]==1:
+    if max_hq:
         result.append(-heapq.heappop(max_hq)[0])
     else:
         result.append(0)
     
-    if min_hq and deleted[min_hq[0][1]]==1:
+    if min_hq:
         result.append(heapq.heappop(min_hq)[0])
     else:
         result.append(0)
