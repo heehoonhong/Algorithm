@@ -1,32 +1,26 @@
 import java.util.*;
 
 class Solution {
-    
-    public static Queue<Integer> queue;
-    
     public int solution(int[] scoville, int K) {
         int answer = 0;
-        
-        queue=new PriorityQueue<>();
-        for(int i=0;i<scoville.length;i++){
-            // 데이터 삽입
-            queue.offer(scoville[i]);
+        PriorityQueue<Integer> pq=new PriorityQueue<>();
+        for(int i = 0;i<scoville.length;i++){
+            pq.offer(scoville[i]);
         }
-        
-        while(queue.peek()<K){
-            
-            if(queue.size()==1){
-                answer=-1;
-                break;
+        int sco=0;
+        int cnt=0;
+        boolean flag=true;
+        while(!pq.isEmpty() && pq.peek()<K){
+            if(pq.size()<2){
+                return -1;
             }
+            int first=pq.poll();
+            int second=pq.poll();
+            pq.offer(first+2*second);
             
-            int first=queue.poll();
-            int second=queue.poll();
-            int newFood=first+2*second;
-            queue.offer(newFood);
-            answer++;
+            cnt++;
         }
         
-        return answer;
+        return cnt;
     }
 }
