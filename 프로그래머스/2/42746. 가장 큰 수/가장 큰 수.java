@@ -2,23 +2,19 @@ import java.util.*;
 
 class Solution {
     public String solution(int[] numbers) {
-        String answer = "";
-    
-        String[] str=new String[numbers.length];
-        for(int i = 0;i<str.length;i++){
-            str[i]=String.valueOf(numbers[i]);
+        String[] strArr=new String[numbers.length];
+        for(int i = 0;i<strArr.length;i++){
+            strArr[i]=Integer.toString(numbers[i]);
         }
         
-        Arrays.sort(str,(s1,s2)->(s2+s1).compareTo(s1+s2));
-        
-        for(String s:str){
-            answer+=s;
+        Arrays.sort(strArr,(o1,o2)->(o2+o1).compareTo(o1+o2));
+        if(strArr[0].equals("0")){
+            return "0";
         }
-        
-        if(answer.charAt(0) == '0'){
-            answer = "0";
+        String answer="";
+        for(int i = 0;i<strArr.length;i++){
+            answer+=strArr[i];
         }
-        
         return answer;
     }
 }
