@@ -1,3 +1,5 @@
+from collections import deque
+
 def solution(n, computers):
     visited=[0]*n
     cnt=0
@@ -8,17 +10,21 @@ def solution(n, computers):
                 graph[i].append(j)
                 graph[j].append(i)
     
-    def dfs(v):
-        if visited[v]==0:
-            visited[v]=1
-        for next_node in graph[v]:
-            if visited[next_node]==0:
-                dfs(next_node)
-    
+    def bfs(v):
+        q=deque()
+        q.append(v)
+        visited[v]=1
+        
+        while q:
+            node=q.popleft()
+            for next_node in graph[node]:
+                if visited[next_node]==0:
+                    q.append(next_node)
+                    visited[next_node]=1
     
     for i in range(n):
         if visited[i]==0:
-            dfs(i)
+            bfs(i)
             cnt+=1
     
     
