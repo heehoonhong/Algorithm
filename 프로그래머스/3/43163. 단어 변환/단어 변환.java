@@ -1,53 +1,51 @@
 class Solution {
-    
-    public static int answer;
     public static int[] visited;
+    public static int cnt;
     
-    public int solution(String begin, String target, String[] words) {
-        answer = 51;
-        visited=new int[words.length];
-        
-        dfs(begin,target,words,0);
-        
-        if(answer==51){
-            answer=0;
+    public static boolean check(String str1,String str2){
+        int cc=0;
+        for(int i = 0;i<str1.length();i++){
+            if(str1.charAt(i)!=str2.charAt(i)){
+                cc++;
+            }
         }
-        
-        return answer;
+        //System.out.println(cc);
+        if(cc==1) return true;
+        else return false;
     }
     
-    public static void dfs(String begin,String target,String[] words,int depth){
-        if(begin.equals(target)){
-            //answer=Math.min(depth,answer);
-            answer=Math.min(answer,depth);
+    public static void dfs(String currentWord,int currentCnt,String target,String[] words){
+        if(currentCnt>cnt){
             return;
         }
         
-        for(int i=0;i<words.length;i++){
-            if(canChange(begin,words[i])&&visited[i]==0){
+        
+        if(currentWord.equals(target)){
+            //System.out.println("asdf");
+            cnt=Math.min(cnt,currentCnt);
+            return;
+        }
+        for(int i = 0;i<words.length;i++){
+            boolean flag=check(currentWord,words[i]);
+            //System.out.println(flag);
+            if(flag && visited[i]==0){
                 visited[i]=1;
-                dfs(words[i],target,words,depth+1);
+                dfs(words[i],currentCnt+1,target,words);
                 visited[i]=0;
             }
         }
     }
     
-    public static boolean canChange(String begin, String newWord){
-        
-        int eqCount=0;
-        
-        for(int i=0;i<begin.length();i++){
-            if(begin.charAt(i)!=newWord.charAt(i)){
-                eqCount++;
-            }
-        }
-        
-        if(eqCount==1){
-            return true;
+    public int solution(String begin, String target, String[] words) {
+        int answer = 0;
+        cnt=1000;
+        visited=new int[words.length];
+        dfs(begin,0,target,words);
+        if(cnt==1000){
+            return 0;
         }
         else{
-            return false;
+            return cnt;
         }
-            
     }
 }
