@@ -16,6 +16,10 @@ def solution(begin, target, words):
     
     def dfs(current_cnt,current_word):
         nonlocal cnt
+        
+        if current_cnt>cnt:
+            return
+        
         if current_word==target:
             cnt=min(current_cnt,cnt)
             return
