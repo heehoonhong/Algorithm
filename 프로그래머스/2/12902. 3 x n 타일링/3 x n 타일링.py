@@ -10,6 +10,7 @@ def solution(n):
             dp[i]+=(dp[j]*2)
         dp[i]+=(dp[i-2]*3)
         dp[i]=dp[i]%1000000007
+        
             
         
         
