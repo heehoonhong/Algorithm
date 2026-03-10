@@ -1,5 +1,5 @@
 def solution(n, money):
-    money.sort()
+    #money.sort()
     dp=[0]*(n+1)
     dp[0]=1
     for m in money:
