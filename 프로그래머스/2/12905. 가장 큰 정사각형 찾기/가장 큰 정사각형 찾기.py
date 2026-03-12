@@ -9,9 +9,8 @@ def solution(board):
                 if board[i][j]==1:
                     dp[i][j]=1
             else:
-                garo=min(dp[i-1][j],dp[i-1][j-1])
-                sero=min(dp[i-1][j-1],dp[i][j-1])
-                res=min(garo,sero)
+                
+                res=min(min(dp[i-1][j],dp[i-1][j-1]),dp[i][j-1])
                 if board[i][j]==1:
                     dp[i][j]=res+1
             result=max(dp[i][j],result)
