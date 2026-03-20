@@ -1,17 +1,19 @@
 def solution(prices):
-    result=[0]*len(prices)
     stack=[]
-    stack.append((prices[0],0))
-    for i in range(1,len(prices)):
-        if stack[-1][0]<=prices[i]:
-            stack.append((prices[i],i))
-        else:
-            while stack and prices[i]<stack[-1][0]:
-                if prices[i]<stack[-1][0]:
-                    result[stack[-1][1]]=i-stack[-1][1]
-                    stack.pop()
-            stack.append((prices[i],i))
-    for i in range(len(stack)):
-        result[stack[i][1]]=stack[-1][1]-stack[i][1]
-    return result
+    answer=[0]*(len(prices))
+    cnt=0
+    for i in range(len(prices)):
+        
+        while stack and prices[stack[-1][0]]>prices[i]:
+            index,price=stack.pop()
+            answer[index]=i-index
+        
+        stack.append([i,prices[i]])
+    for i in range(len(stack)-1):
+        index,price=stack[i][0],stack[i][1]
+        if prices[index]==price:
+            answer[index]=stack[-1][0]-index
+        
+    #print(stack)
+    return answer
         
