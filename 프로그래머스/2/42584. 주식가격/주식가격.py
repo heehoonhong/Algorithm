@@ -11,8 +11,9 @@ def solution(prices):
         stack.append([i,prices[i]])
     for i in range(len(stack)-1):
         index,price=stack[i][0],stack[i][1]
-        if prices[index]==price:
-            answer[index]=stack[-1][0]-index
+        
+        
+        answer[index]=stack[-1][0]-index
         
     #print(stack)
     return answer
