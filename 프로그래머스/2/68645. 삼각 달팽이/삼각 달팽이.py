@@ -33,7 +33,8 @@ def solution(n):
     for i in range(n):
         for j in range(len(arr[i])):
             result.append(arr[i][j])
-    return result
+    #return result
+    return sum(arr,[])
         
         
 
