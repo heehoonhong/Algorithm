@@ -11,10 +11,11 @@ def solution(rows, columns, queries):
             num+=1
     
     def rotate(graph,query):
-        ss=[]
+        min_num=rows*columns
         sx,sy,ex,ey=query
         # 이동할 위치에 있는 변수의 값 임시 저장 변수
         temp=graph[sx][sy]
+        # 초기위치 저장
         ssx,ssy,eex,eey=sx,sy,ex,ey
         # 방향
         for dr in range(4):
@@ -25,13 +26,13 @@ def solution(rows, columns, queries):
             
             for i in range(l):
                 nx,ny=sx+dx[dr],sy+dy[dr]
-                ss.append(graph[nx][ny])
+                if min_num>graph[nx][ny]: min_num=graph[nx][ny]
                 temp2=graph[nx][ny]
                 graph[nx][ny]=temp
                 temp=temp2
                 sx,sy=nx,ny
         
-        return min(ss)
+        return min_num
         
     
     for i in range(len(queries)):
