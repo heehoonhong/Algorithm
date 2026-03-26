@@ -55,8 +55,14 @@ def solution(storage, requests):
             
     
     for index in range(len(requests)):
+        # 이렇게 s를 둬서 하는 이유는 
+        # 길이가 1일 때는 한 개만 빼내야 하는데
+        # 도달 가능할 때 '0'으로 바꿔버린다면 
+        # 그 턴에 계속해서 그 알파벳을 삭제해 버려서 틀렸음
+        # 따라서 s에 모아서 한꺼번에 처리해야 함.
         s=[]
         if len(requests[index])==1:
+            
             for i in range(n):
                 for j in range(m):
                     if graph[i][j]==requests[index][0] and can_reach(i,j):
