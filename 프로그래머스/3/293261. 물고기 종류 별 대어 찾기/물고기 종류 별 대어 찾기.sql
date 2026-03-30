@@ -1,10 +1,9 @@
-with fish as (
-    select max(length) as length,fish_type from fish_info
+select i.id, n.fish_name,i.length from fish_info as i
+
+join fish_name_info as n
+on n.fish_type=i.fish_type
+where (i.fish_type,i.length) in (
+    select fish_type,max(length) from fish_info
     group by fish_type
 )
-select fi.id,fni.fish_name,fi.length from fish_info fi
-join fish_name_info  fni
-on fi.fish_type=fni.fish_type
-where (fi.length, fi.fish_type) in (
-    select length, fish_type from fish
-)
+order by 1 
