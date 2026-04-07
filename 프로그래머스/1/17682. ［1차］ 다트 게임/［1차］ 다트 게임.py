@@ -1,25 +1,23 @@
-def solution(dr):
-    num=""
-    temp=0
+import re
+
+def solution(dartResult):
+    darts=re.findall('[0-9]+[SDT][#*]?',dartResult)
     answer=[]
-    for i in range(len(dr)):
-        if dr[i].isdigit() and not dr[i-1].isdigit():
-            if dr[i+1].isdigit():
-                temp=int(dr[i:i+2])
-                i+=1
-            else:
-                temp=int(dr[i])
-        elif dr[i]=='S':
-            answer.append(temp)
-        elif dr[i]=='D':
-            answer.append(temp**2)
-        elif dr[i]=='T':
-            answer.append(temp**3)
-        elif dr[i]=='#':
-            answer[-1]= -answer[-1]
-        elif dr[i]=='*':
-            answer[-1]=answer[-1]*2
-            if len(answer)>=2:
-                answer[-2]=2*answer[-2]
-    #print(answer)
+    for i in range(len(darts)):
+        num=int(re.findall('[0-9]+',darts[i])[0])
+        for j in range(len(darts[i])):
+            if darts[i][j]=='S':
+                answer.append(num)
+            elif darts[i][j]=='D':
+                answer.append(num**2)
+            elif darts[i][j]=='T':
+                answer.append(num**3)
+            elif darts[i][j]=='*':
+                answer[-1]=2*answer[-1]
+                if len(answer)>=2:
+                    answer[-2]=answer[-2]*2
+            elif darts[i][j]=='#':
+                answer[-1]=-answer[-1]
     return sum(answer)
+            
+            
