@@ -1,13 +1,13 @@
-with per_rank as (
-    select id, percent_rank() over (order by size_of_colony desc) as per
+with most as (
+    select id,
+    ntile(4) over (order by size_of_colony desc) as nt
     from ecoli_data
 )
 
-select id,
-case when per <= 0.25 then 'CRITICAL'
-when per <= 0.5 then 'HIGH'
-when per <= 0.75 then 'MEDIUM'
-when per <= 1 then 'LOW'
-end as colony_name
-from per_rank
+select id, case
+when nt=1 then 'CRITICAL'
+when nt=2 then 'HIGH'
+when nt=3 then 'MEDIUM'
+else 'LOW' end as COLONY_NAME
+from most 
 order by id
