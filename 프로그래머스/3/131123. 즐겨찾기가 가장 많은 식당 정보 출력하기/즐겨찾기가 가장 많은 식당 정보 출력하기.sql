@@ -1,7 +1,9 @@
 with most as (
-    select food_type, max(favorites) from rest_info
-    group by food_type
+    select food_type, rest_id, rest_name, favorites,
+    row_number() over (partition by food_type order by favorites desc) as rn
+    from rest_info
 )
-select food_type, rest_id,rest_name,favorites from rest_info
-where (food_type,favorites) in (select * from most)
+
+select food_type, rest_id, rest_name, favorites from most
+where rn=1
 order by food_type desc
