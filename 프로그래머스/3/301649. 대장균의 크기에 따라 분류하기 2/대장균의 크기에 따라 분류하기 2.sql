@@ -1,13 +1,12 @@
 with most as (
     select id,
-    ntile(4) over (order by size_of_colony desc) as nt
+    percent_rank() over (order by size_of_colony desc) as pr
     from ecoli_data
 )
 
 select id, case
-when nt=1 then 'CRITICAL'
-when nt=2 then 'HIGH'
-when nt=3 then 'MEDIUM'
-else 'LOW' end as COLONY_NAME
-from most 
-order by id
+when pr>0.75 then 'LOW'
+when pr>0.5 then 'MEDIUM'
+when pr>0.25 then 'HIGH'
+else 'CRITICAL' end as colony_name
+from most order by id
